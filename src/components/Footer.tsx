@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="border-t bg-muted/50 py-12">
       <div className="container">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Brain className="h-6 w-6 text-primary" />
@@ -13,14 +13,6 @@ const Footer = () => {
             <p className="text-sm text-muted-foreground">
               Transformando a vida de famílias que cuidam de pessoas com Alzheimer através da alimentação adequada.
             </p>
-          </div>
-
-          <div className="space-y-4">
-            <h3 className="font-semibold">Contato</h3>
-            <div className="space-y-2 text-sm text-muted-foreground">
-              <p>contato@vivacommemoria.com.br</p>
-              <p>Suporte: seg-sex, 9h-18h</p>
-            </div>
           </div>
 
           <div className="space-y-4">
