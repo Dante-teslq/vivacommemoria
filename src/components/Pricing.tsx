@@ -4,7 +4,7 @@ import { CheckCircle2, Star } from "lucide-react";
 
 const Pricing = () => {
   const handlePurchase = () => {
-    window.open("https://pay.kiwify.com.br/exemplo", "_blank");
+    window.open("https://pay.cakto.com.br/3ffxm35_631826", "_blank");
   };
 
   return (
