@@ -4,6 +4,15 @@ import { CheckCircle2, Star } from "lucide-react";
 
 const Pricing = () => {
   const handlePurchase = () => {
+    // Track InitiateCheckout event with Meta Pixel
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'InitiateCheckout', {
+        content_name: 'E-book Viva com Memória',
+        content_category: 'E-book',
+        value: 47.90,
+        currency: 'BRL'
+      });
+    }
     window.open("https://pay.cakto.com.br/3ffxm35_631826", "_blank");
   };
 
@@ -57,6 +66,7 @@ const Pricing = () => {
               </div>
 
               <Button 
+                id="garantir-ebook"
                 size="lg" 
                 className="w-full text-lg h-14 font-semibold"
                 onClick={handlePurchase}
