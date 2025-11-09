@@ -1,13 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2, Star } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const Pricing = () => {
-  const navigate = useNavigate();
-
   const handlePurchase = () => {
-    navigate("/carrinho");
+    window.open("https://pay.cakto.com.br/qhk5zwq_641726", "_blank");
   };
 
   return (
