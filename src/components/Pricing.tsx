@@ -1,19 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2, Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Pricing = () => {
+  const navigate = useNavigate();
+
   const handlePurchase = () => {
-    // Track InitiateCheckout event with Meta Pixel
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'InitiateCheckout', {
-        content_name: 'E-book Viva com Memória',
-        content_category: 'E-book',
-        value: 47.90,
-        currency: 'BRL'
-      });
-    }
-    window.open("https://pay.cakto.com.br/qhk5zwq_641726", "_blank");
+    navigate("/carrinho");
   };
 
   return (
