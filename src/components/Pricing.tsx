@@ -13,7 +13,7 @@ const Pricing = () => {
         currency: 'BRL'
       });
     }
-    window.open("https://pay.cakto.com.br/3ffxm35_631826", "_blank");
+    window.open("https://pay.cakto.com.br/qhk5zwq_641726", "_blank");
   };
 
   return (
