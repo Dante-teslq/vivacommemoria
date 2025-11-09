@@ -1,37 +1,56 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Viva com Memória - Cardápio Semanal para Alzheimer</title>
-    <meta name="description" content="E-book com 50 receitas testadas e cardápio completo para pessoas com Alzheimer. Nutrição adequada para proporcionar conforto e bem-estar." />
+
+    <meta
+      name="description"
+      content="E-book com 50 receitas testadas e cardápio completo para pessoas com Alzheimer. Nutrição adequada para proporcionar conforto e bem-estar."
+    />
     <meta name="author" content="Viva com Memória" />
     <meta name="facebook-domain-verification" content="0giyzdgc0gxrfi4g3k42fpje3gm8wj" />
 
-    <meta property="og:title" content="Viva com Memória - Cardápio Semanal para Alzheimer" />
-    <meta property="og:description" content="E-book com 50 receitas testadas e cardápio completo para pessoas com Alzheimer. Por apenas R$ 47,90." />
+    <meta
+      property="og:title"
+      content="Viva com Memória - Cardápio Semanal para Alzheimer"
+    />
+    <meta
+      property="og:description"
+      content="E-book com 50 receitas testadas e cardápio completo para pessoas com Alzheimer. Por apenas R$ 47,90."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    
+
     <!-- Meta Pixel Code -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1588994835615827');
-    fbq('track', 'PageView');
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+
+      fbq("init", "1588994835615827");
+      fbq("track", "PageView");
     </script>
     <!-- End Meta Pixel Code -->
-    
+
     <!-- UTMify Script -->
     <script
       src="https://cdn.utmify.com.br/scripts/utms/latest.js"
@@ -45,11 +64,101 @@
 
   <body>
     <!-- Meta Pixel Noscript -->
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1588994835615827&ev=PageView&noscript=1"
-    /></noscript>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1588994835615827&ev=PageView&noscript=1"
+      />
+    </noscript>
     <!-- End Meta Pixel Noscript -->
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Script de rastreamento do botão de checkout -->
+    <script>
+      (function attachCheckoutTracker() {
+        var REDIRECT_DELAY = 350; // tempo entre o evento e o redirecionamento (ms)
+        var selectors = [
+          "#adquirir-agora",
+          "#garantir-ebook",
+          'a[href*="cakto"]',
+          'button[data-checkout="cakto"]',
+        ];
+
+        function findButtons() {
+          var els = [];
+          selectors.forEach(function (sel) {
+            try {
+              var nodeList = document.querySelectorAll(sel);
+              nodeList.forEach(function (n) {
+                if (n) els.push(n);
+              });
+            } catch (e) {}
+          });
+
+          // fallback: procura por texto no botão/link
+          document.querySelectorAll("a, button").forEach(function (el) {
+            if (
+              !els.includes(el) &&
+              /adquirir|garantir meu ebook|comprar|adquirir agora/i.test(
+                el.innerText || ""
+              )
+            ) {
+              els.push(el);
+            }
+          });
+          return els;
+        }
+
+        function trackAndRedirect(el, href) {
+          try {
+            if (typeof fbq === "function") {
+              fbq("track", "InitiateCheckout");
+            } else {
+              console.warn("fbq não encontrado no momento do clique");
+            }
+          } catch (e) {
+            console.warn(e);
+          }
+          setTimeout(function () {
+            if (href) window.location.href = href;
+            else if (el && el.tagName === "BUTTON" && el.dataset && el.dataset.href) {
+              window.location.href = el.dataset.href;
+            }
+          }, REDIRECT_DELAY);
+        }
+
+        function bind() {
+          var els = findButtons();
+          els.forEach(function (el) {
+            if (el.__fbq_bound) return;
+            el.__fbq_bound = true;
+            el.addEventListener("click", function (e) {
+              var isLink = el.tagName.toLowerCase() === "a";
+              var href = isLink
+                ? el.href
+                : el.dataset && el.dataset.href
+                ? el.dataset.href
+                : null;
+              if (isLink) e.preventDefault();
+              trackAndRedirect(el, href);
+            });
+          });
+        }
+
+        // executa em loop pra pegar botões dinâmicos (React)
+        bind();
+        var tries = 0;
+        var interval = setInterval(function () {
+          bind();
+          tries++;
+          if (tries > 8) clearInterval(interval);
+        }, 800);
+      })();
+    </script>
+    <!-- Fim do script -->
   </body>
 </html>
